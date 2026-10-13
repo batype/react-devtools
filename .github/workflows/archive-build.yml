@@ -62,7 +62,11 @@ jobs:
         working-directory: upstream
         env:
           NODE_OPTIONS: ${{ matrix.node_options }}
-        run: yarn build-for-devtools
+        run: |
+          if [ '${{ matrix.major }}' = '4' ]; then
+            python3 -c 'from pathlib import Path; import json; p=Path("package.json"); d=json.loads(p.read_text()); old=d["scripts"]["build-for-devtools"]; suffix=" && cp -r ./build/node_modules build/oss-experimental/"; assert old.endswith(suffix); d["scripts"]["build-for-devtools"]=old[:-len(suffix)]; p.write_text(json.dumps(d,indent=2)+"\n")'
+          fi
+          yarn build-for-devtools
       - name: Build Chrome extension
         working-directory: upstream
         env:

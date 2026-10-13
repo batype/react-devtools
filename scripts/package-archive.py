@@ -21,7 +21,7 @@ with zipfile.ZipFile(zpath, 'w', zipfile.ZIP_DEFLATED) as z:
 with zipfile.ZipFile(zpath) as z: assert z.testzip() is None
 meta = {'version': expected, 'branch': 'v'+expected.split('.')[0], 'kind': 'source-build', 'upstream_repository': upstream, 'source_revision': revision, 'source_url': 'https://github.com/'+upstream+'/tree/'+revision, 'manifest_version': m['manifest_version'], 'minimum_chrome_version': m.get('minimum_chrome_version'), 'archive_date': '2026-10-13', 'validation': ['manifest version', 'manifest runtime paths', 'nonempty runtime files', 'ZIP CRC'], 'runtime_browser_test': False}
 (dest / 'version.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2)+'\n')
-meta['build_adjustments'] = ['Build-only adm-zip pinned to 0.5.16 for Node compatibility'] if expected.startswith('2.') else []
+meta['build_adjustments'] = ['Build-only adm-zip pinned to 0.5.16 for Node compatibility'] if expected.startswith('2.') else (['Removed obsolete copy step after upstream moved builds to oss-experimental'] if expected.startswith('4.') else [])
 (dest / 'version.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2)+'\n')
 license_path = Path('upstream/LICENSE')
 shutil.copy2(license_path, dest / 'LICENSE')
