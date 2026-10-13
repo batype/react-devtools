@@ -1,0 +1,97 @@
+name: Build historical React DevTools
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - major: "2"
+            version: "2.5.2"
+            repository: "facebook/react-devtools"
+            revision: "25018fc28bd3ddba8bc5a122dbaca1ea9e60fd4e"
+            node: "14"
+            node_options: ""
+          - major: "4"
+            version: "4.28.5"
+            repository: "facebook/react"
+            revision: "ef8a840bd6fbb01f806b3cc297da168d9a91730c"
+            node: "20"
+            node_options: "--openssl-legacy-provider"
+          - major: "5"
+            version: "5.3.1"
+            repository: "facebook/react"
+            revision: "ccb20cb88b96f13d66fe6740f408b0b945349529"
+            node: "20"
+            node_options: "--openssl-legacy-provider"
+          - major: "6"
+            version: "6.1.5"
+            repository: "facebook/react"
+            revision: "5d87cd224452c68d09bef99656b6261e9772a210"
+            node: "20"
+            node_options: "--openssl-legacy-provider"
+          - major: "7"
+            version: "7.0.1"
+            repository: "facebook/react"
+            revision: "3cde211b0cb1c707114c27d7fd23683d02086e31"
+            node: "20"
+            node_options: "--openssl-legacy-provider"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: archive
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ matrix.revision }}
+          path: upstream
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install Yarn Classic
+        run: npm install --global yarn@1.22.22 --force
+      - name: Install upstream dependencies
+        working-directory: upstream
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+          PUPPETEER_SKIP_DOWNLOAD: '1'
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: yarn install --frozen-lockfile --ignore-scripts --ignore-engines --network-timeout 180000
+      - name: Build React dependencies
+        if: matrix.major != '2'
+        working-directory: upstream
+        env:
+          NODE_OPTIONS: ${{ matrix.node_options }}
+        run: yarn build-for-devtools
+      - name: Build Chrome extension
+        working-directory: upstream
+        env:
+          NODE_OPTIONS: ${{ matrix.node_options }}
+        run: |
+          if [ '${{ matrix.major }}' = '2' ]; then
+            yarn build:extension:chrome
+          else
+            cd packages/react-devtools-extensions
+            yarn build:chrome
+          fi
+      - name: Package and validate
+        run: |
+          if [ '${{ matrix.major }}' = '2' ]; then
+            src=upstream/shells/chrome/build/unpacked
+          else
+            src=upstream/packages/react-devtools-extensions/chrome/build/unpacked
+          fi
+          python3 archive/scripts/package-archive.py "$src" distribution '${{ matrix.version }}' '${{ matrix.repository }}' '${{ matrix.revision }}'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: react-devtools-v${{ matrix.major }}
+          path: distribution/
+          if-no-files-found: error
+          retention-days: 30
