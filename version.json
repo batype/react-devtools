@@ -1,9 +1,24 @@
 {
-  "version": "8.0.0",
-  "extension_id": "fmkadmapgofadopljbjfkapdkoienihi",
-  "downloaded_at": "2026-10-13",
-  "official_store": "https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi",
-  "source_revision": "1d34f91dfd",
-  "minimum_chrome_version": "114",
-  "download_url": "https://clients2.google.com/service/update2/crx?response=redirect&prodversion=143.0.0.0&acceptformat=crx2,crx3&x=id%3Dfmkadmapgofadopljbjfkapdkoienihi%26uc"
+  "version": "4.28.5",
+  "branch": "v4",
+  "kind": "source-build",
+  "upstream_repository": "facebook/react",
+  "source_revision": "ef8a840bd6fbb01f806b3cc297da168d9a91730c",
+  "source_url": "https://github.com/facebook/react/tree/ef8a840bd6fbb01f806b3cc297da168d9a91730c",
+  "manifest_version": 3,
+  "minimum_chrome_version": "102",
+  "archive_date": "2026-10-13",
+  "validation": [
+    "manifest version",
+    "manifest runtime and icon paths",
+    "ZIP CRC",
+    "ZIP/extracted file equality",
+    "SHA256"
+  ],
+  "runtime_browser_test": false,
+  "build_adjustments": [
+    "Removed obsolete copy step after upstream moved builds to oss-experimental"
+  ],
+  "build_run_url": "https://github.com/batype/react-devtools/actions/runs/38366293962",
+  "file_count": 61
 }
