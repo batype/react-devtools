@@ -3,9 +3,11 @@
     "major": "2",
     "version": "2.5.1",
     "repository": "facebook/react-devtools",
-    "revision": "97d2cba2dad44f41ed6961f7de76957177ee3f27",
+    "revision": "25018fc28bd3ddba8bc5a122dbaca1ea9e60fd4e",
     "node": "14",
-    "node_options": ""
+    "node_options": "",
+    "source_tag": "v2.5.2",
+    "note": "Upstream tag v2.5.2 has browser manifest version 2.5.1; archive uses the unmodified manifest version."
   },
   {
     "major": "4",
