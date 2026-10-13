@@ -1,0 +1,179 @@
+{
+  "archive_date": "2026-10-13",
+  "policy": "One representative stable browser-extension version per major",
+  "versions": [
+    {
+      "version": "0.14.6",
+      "branch": "v0",
+      "kind": "official-release",
+      "download_url": "https://github.com/facebook/react-devtools/releases/download/v0.14.6/react-devtools-0.14.6.crx",
+      "source_url": "https://github.com/facebook/react-devtools/tree/v0.14.6",
+      "manifest_version": 2,
+      "minimum_chrome_version": "43",
+      "archive_date": "2026-10-13",
+      "selection": "Official preserved release asset; not necessarily the last patch in this major",
+      "runtime_browser_test": false,
+      "file_count": 23,
+      "validation": [
+        "manifest version",
+        "manifest runtime and icon paths",
+        "ZIP CRC",
+        "ZIP/extracted file equality",
+        "SHA256"
+      ]
+    },
+    {
+      "version": "2.5.1",
+      "branch": "v2",
+      "kind": "source-build",
+      "upstream_repository": "facebook/react-devtools",
+      "source_revision": "25018fc28bd3ddba8bc5a122dbaca1ea9e60fd4e",
+      "source_url": "https://github.com/facebook/react-devtools/tree/25018fc28bd3ddba8bc5a122dbaca1ea9e60fd4e",
+      "manifest_version": 2,
+      "minimum_chrome_version": "49",
+      "archive_date": "2026-10-13",
+      "validation": [
+        "manifest version",
+        "manifest runtime and icon paths",
+        "ZIP CRC",
+        "ZIP/extracted file equality",
+        "SHA256"
+      ],
+      "runtime_browser_test": false,
+      "build_adjustments": [
+        "Build-only adm-zip pinned to 0.5.16 for Node compatibility"
+      ],
+      "source_tag": "v2.5.2",
+      "version_note": "Official source tag v2.5.2 contains browser manifest 2.5.1. The manifest was not modified.",
+      "build_run_url": "https://github.com/batype/react-devtools/actions/runs/38373397986",
+      "file_count": 45
+    },
+    {
+      "version": "3.4.2",
+      "branch": "v3",
+      "kind": "official-release",
+      "download_url": "https://github.com/facebook/react-devtools/releases/download/3.4.2/chrome-extension.zip",
+      "source_url": "https://github.com/facebook/react-devtools/tree/3.4.2",
+      "manifest_version": 2,
+      "minimum_chrome_version": "49",
+      "archive_date": "2026-10-13",
+      "selection": "Official preserved release asset; not necessarily the last patch in this major",
+      "runtime_browser_test": false,
+      "file_count": 45,
+      "validation": [
+        "manifest version",
+        "manifest runtime and icon paths",
+        "ZIP CRC",
+        "ZIP/extracted file equality",
+        "SHA256"
+      ]
+    },
+    {
+      "version": "4.28.5",
+      "branch": "v4",
+      "kind": "source-build",
+      "upstream_repository": "facebook/react",
+      "source_revision": "ef8a840bd6fbb01f806b3cc297da168d9a91730c",
+      "source_url": "https://github.com/facebook/react/tree/ef8a840bd6fbb01f806b3cc297da168d9a91730c",
+      "manifest_version": 3,
+      "minimum_chrome_version": "102",
+      "archive_date": "2026-10-13",
+      "validation": [
+        "manifest version",
+        "manifest runtime and icon paths",
+        "ZIP CRC",
+        "ZIP/extracted file equality",
+        "SHA256"
+      ],
+      "runtime_browser_test": false,
+      "build_adjustments": [
+        "Removed obsolete copy step after upstream moved builds to oss-experimental"
+      ],
+      "build_run_url": "https://github.com/batype/react-devtools/actions/runs/38366293962",
+      "file_count": 61
+    },
+    {
+      "version": "5.3.1",
+      "branch": "v5",
+      "kind": "source-build",
+      "upstream_repository": "facebook/react",
+      "source_revision": "ccb20cb88b96f13d66fe6740f408b0b945349529",
+      "source_url": "https://github.com/facebook/react/tree/ccb20cb88b96f13d66fe6740f408b0b945349529",
+      "manifest_version": 3,
+      "minimum_chrome_version": "102",
+      "archive_date": "2026-10-13",
+      "validation": [
+        "manifest version",
+        "manifest runtime and icon paths",
+        "ZIP CRC",
+        "ZIP/extracted file equality",
+        "SHA256"
+      ],
+      "runtime_browser_test": false,
+      "build_run_url": "https://github.com/batype/react-devtools/actions/runs/38365273527",
+      "file_count": 62
+    },
+    {
+      "version": "6.1.5",
+      "branch": "v6",
+      "kind": "source-build",
+      "upstream_repository": "facebook/react",
+      "source_revision": "5d87cd224452c68d09bef99656b6261e9772a210",
+      "source_url": "https://github.com/facebook/react/tree/5d87cd224452c68d09bef99656b6261e9772a210",
+      "manifest_version": 3,
+      "minimum_chrome_version": "114",
+      "archive_date": "2026-10-13",
+      "validation": [
+        "manifest version",
+        "manifest runtime and icon paths",
+        "ZIP CRC",
+        "ZIP/extracted file equality",
+        "SHA256"
+      ],
+      "runtime_browser_test": false,
+      "build_run_url": "https://github.com/batype/react-devtools/actions/runs/38365273527",
+      "file_count": 62
+    },
+    {
+      "version": "7.0.1",
+      "branch": "v7",
+      "kind": "source-build",
+      "upstream_repository": "facebook/react",
+      "source_revision": "3cde211b0cb1c707114c27d7fd23683d02086e31",
+      "source_url": "https://github.com/facebook/react/tree/3cde211b0cb1c707114c27d7fd23683d02086e31",
+      "manifest_version": 3,
+      "minimum_chrome_version": "114",
+      "archive_date": "2026-10-13",
+      "validation": [
+        "manifest version",
+        "manifest runtime and icon paths",
+        "ZIP CRC",
+        "ZIP/extracted file equality",
+        "SHA256"
+      ],
+      "runtime_browser_test": false,
+      "build_run_url": "https://github.com/batype/react-devtools/actions/runs/38365273527",
+      "file_count": 60
+    },
+    {
+      "version": "8.0.0",
+      "branch": "v8",
+      "kind": "official-chrome-store",
+      "download_url": "https://clients2.google.com/service/update2/crx?response=redirect&prodversion=143.0.0.0&acceptformat=crx2,crx3&x=id%3Dfmkadmapgofadopljbjfkapdkoienihi%26uc",
+      "source_url": "https://github.com/facebook/react/tree/1d34f91dfd",
+      "manifest_version": 3,
+      "minimum_chrome_version": "114",
+      "archive_date": "2026-10-13",
+      "selection": "Latest stable Chrome store release",
+      "runtime_browser_test": false,
+      "file_count": 61,
+      "validation": [
+        "manifest version",
+        "manifest runtime and icon paths",
+        "ZIP CRC",
+        "ZIP/extracted file equality",
+        "SHA256"
+      ]
+    }
+  ]
+}
