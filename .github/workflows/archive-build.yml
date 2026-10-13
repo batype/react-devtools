@@ -1,46 +1,35 @@
 name: Build historical React DevTools
 on:
   workflow_dispatch:
+    inputs:
+      major:
+        type: choice
+        default: all
+        options: [all, "2", "4", "5", "6", "7"]
 permissions:
   contents: read
 jobs:
+  select:
+    runs-on: ubuntu-24.04
+    outputs:
+      versions: ${{ steps.versions.outputs.versions }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - id: versions
+        env:
+          ARCHIVE_MAJOR: ${{ inputs.major }}
+        run: |
+          python3 -c 'import os,json; entries=json.load(open("scripts/build-versions.json")); major=os.environ["ARCHIVE_MAJOR"]; selected=[v for v in entries if major=="all" or v["major"]==major]; assert selected; print("versions="+json.dumps(selected))' >> "$GITHUB_OUTPUT"
   build:
+    needs: select
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - major: "2"
-            version: "2.5.2"
-            repository: "facebook/react-devtools"
-            revision: "25018fc28bd3ddba8bc5a122dbaca1ea9e60fd4e"
-            node: "14"
-            node_options: ""
-          - major: "4"
-            version: "4.28.5"
-            repository: "facebook/react"
-            revision: "ef8a840bd6fbb01f806b3cc297da168d9a91730c"
-            node: "20"
-            node_options: "--openssl-legacy-provider"
-          - major: "5"
-            version: "5.3.1"
-            repository: "facebook/react"
-            revision: "ccb20cb88b96f13d66fe6740f408b0b945349529"
-            node: "20"
-            node_options: "--openssl-legacy-provider"
-          - major: "6"
-            version: "6.1.5"
-            repository: "facebook/react"
-            revision: "5d87cd224452c68d09bef99656b6261e9772a210"
-            node: "20"
-            node_options: "--openssl-legacy-provider"
-          - major: "7"
-            version: "7.0.1"
-            repository: "facebook/react"
-            revision: "3cde211b0cb1c707114c27d7fd23683d02086e31"
-            node: "20"
-            node_options: "--openssl-legacy-provider"
+        include: ${{ fromJSON(needs.select.outputs.versions) }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -64,6 +53,10 @@ jobs:
           PUPPETEER_SKIP_DOWNLOAD: '1'
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
         run: yarn install --frozen-lockfile --ignore-scripts --ignore-engines --network-timeout 180000
+      - name: Use compatible ZIP packer for v2
+        if: matrix.major == '2'
+        working-directory: upstream
+        run: yarn add adm-zip@0.5.16 --ignore-scripts --ignore-engines
       - name: Build React dependencies
         if: matrix.major != '2'
         working-directory: upstream
