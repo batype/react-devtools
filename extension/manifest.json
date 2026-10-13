@@ -1,12 +1,10 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
   "manifest_version": 3,
   "name": "React Developer Tools",
-  "description": "Adds React debugging tools to the Chrome Developer Tools.\n\nCreated from revision 1d34f91dfd.",
-  "version": "8.0.0",
-  "version_name": "8.0.0",
-  "minimum_chrome_version": "114",
+  "description": "Adds React debugging tools to the Chrome Developer Tools.\n\nCreated from revision ccb20cb on 10/13/2026.",
+  "version": "5.3.1",
+  "version_name": "5.3.1 (10/13/2026)",
+  "minimum_chrome_version": "102",
   "icons": {
     "16": "icons/16-production.png",
     "32": "icons/32-production.png",
@@ -43,12 +41,8 @@
     "service_worker": "build/background.js"
   },
   "permissions": [
-    "scripting",
     "storage",
-    "tabs"
-  ],
-  "optional_permissions": [
-    "clipboardWrite"
+    "scripting"
   ],
   "host_permissions": [
     "<all_urls>"
