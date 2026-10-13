@@ -1,9 +1,20 @@
 {
-  "version": "8.0.0",
-  "extension_id": "fmkadmapgofadopljbjfkapdkoienihi",
-  "downloaded_at": "2026-10-13",
-  "official_store": "https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi",
-  "source_revision": "1d34f91dfd",
-  "minimum_chrome_version": "114",
-  "download_url": "https://clients2.google.com/service/update2/crx?response=redirect&prodversion=143.0.0.0&acceptformat=crx2,crx3&x=id%3Dfmkadmapgofadopljbjfkapdkoienihi%26uc"
+  "version": "0.14.6",
+  "branch": "v0",
+  "kind": "official-release",
+  "download_url": "https://github.com/facebook/react-devtools/releases/download/v0.14.6/react-devtools-0.14.6.crx",
+  "source_url": "https://github.com/facebook/react-devtools/tree/v0.14.6",
+  "manifest_version": 2,
+  "minimum_chrome_version": "43",
+  "archive_date": "2026-10-13",
+  "selection": "Official preserved release asset; not necessarily the last patch in this major",
+  "runtime_browser_test": false,
+  "file_count": 23,
+  "validation": [
+    "manifest version",
+    "manifest runtime and icon paths",
+    "ZIP CRC",
+    "ZIP/extracted file equality",
+    "SHA256"
+  ]
 }
